@@ -17,47 +17,12 @@ class List {
         void print_reverse(Node<T>* head);
 
     public:
-        List(){
-            head = NULL;
-            tail = NULL;
-        };
+        List();
 
-        T front(){
-            return head->data;
-        };
-        T back(){
-            return tail->data;
-        };
-        void push_front(T value){
-            Node<T> *temp=new Node<T>;
-            temp->data=value;
-            temp->next=NULL;
-            if(head==NULL)
-            {
-                head=temp;
-                tail=temp;
-                temp=NULL;
-            }
-            else
-            temp->next=head;
-            head=temp;
-        };
-        void push_back(T value){
-            Node<T> *temp=new Node<T>;
-            temp->data=value;
-            temp->next=NULL;
-            if(head==NULL)
-            {
-                head=temp;
-                tail=temp;
-                temp=NULL;
-            }
-            else
-            {
-                tail->next=temp;
-                tail=temp;
-            }
-        };
+        int front();
+        int back();
+        void push_front(T value);
+        void push_back(T value);
         void pop_front();
         void pop_back();
         T get(int position);
