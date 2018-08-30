@@ -17,7 +17,7 @@ private:
     void print_reverse(Node<T>* head);
 
 public:
-    int nodes;
+    int nodes; // Nunca se inicializa
     List(){
         head = NULL;
         tail = NULL;
@@ -73,7 +73,7 @@ public:
             throw "Lista Vacia";
         }
         else if(nodes == 1){
-            delete head;
+            delete head; // Falta igualar head = tail = NULL para indicar que está vacía, solo dando delete quedará basura en el puntero
         }
         else{
             head = temp->next;
@@ -88,7 +88,7 @@ public:
             throw "Lista Vacia";
         }
         if(nodes == 1){
-            delete head;
+            delete head; // Mismo caso anterior
         }
         else
         {
@@ -97,7 +97,7 @@ public:
             }
 
             tail = temp;
-            temp = temp->next;
+            temp = temp->next; // Falta igualar tail->next a null
         }
         nodes--;
         delete temp;
@@ -118,12 +118,12 @@ public:
             cout<<"\nNo existe indice "<<position<<"\n";
         }
     };
-    void concat(List<T> &other);
+    void concat(List<T> &other); // Falta implementar
     bool empty(){
-        if(nodes > 0)return false;
+        if(nodes > 0)return false; // Podría ser return head == NULL;
         else return true;
     };
-    int size(){
+    int size(){ // Esto no va a funcionar y nada de lo que hayas trabajado sobre nodes, ya que no lo has inicializado
         return nodes;
     };
     void print(){
@@ -134,23 +134,21 @@ public:
         }
         cout<<temp->data<<" ";
     };
-    void print_reverse(){Node<T> *temp = tail;
+    void print_reverse(){Node<T> *temp = tail; // Esto no va a funcionar ya que next te lleva al siguiente y no al anterior. El último elemento sería NULL
         while(temp != head){
             cout<< temp->data<<" ";
             temp = temp->next;
         }
         cout<<temp->data<<" ";}
-    void clear(){
+    void clear(){ // Falta liberar memoria con delete
         Node<T> *temp = head;
         while(temp != tail){
-            temp->data = NULL;
+            temp->data = NULL; // Data no es un puntero
             temp = temp->next;
         }
         temp->data=NULL;
     };
-    Iterator<T> begin();
-    Iterator<T> end();
 
-    ~List();
+    ~List(); // Falta implementar destructor, esto no va a compilar
 };
 #endif
